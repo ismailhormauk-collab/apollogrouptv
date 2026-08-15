@@ -1,0 +1,26 @@
+// Single source of truth for the cinematic poster-grid colour palette.
+// Previously duplicated in 7 component files with slight variations.
+export const POSTER_GRADIENTS = [
+  "from-purple-800 to-blue-900",
+  "from-red-800 to-orange-900",
+  "from-blue-800 to-cyan-900",
+  "from-rose-800 to-red-900",
+  "from-pink-800 to-purple-900",
+  "from-yellow-700 to-orange-900",
+  "from-indigo-800 to-purple-900",
+  "from-rose-900 to-red-800",
+  "from-orange-800 to-red-900",
+  "from-cyan-800 to-blue-900",
+  "from-violet-800 to-indigo-900",
+  "from-rose-800 to-pink-900",
+  "from-purple-900 to-blue-800",
+  "from-red-900 to-pink-800",
+  "from-blue-900 to-indigo-800",
+  "from-red-900 to-rose-800",
+  "from-orange-900 to-yellow-800",
+  "from-fuchsia-800 to-violet-900",
+  "from-sky-800 to-blue-900",
+  "from-amber-800 to-orange-900",
+  "from-orange-800 to-amber-900",
+  "from-rose-800 to-pink-900",
+] as const;
