@@ -55,15 +55,15 @@ export default function SiteHeader() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
 
           {/* Logo */}
-          <Link href="/" className="relative flex items-center h-9 w-32 lg:h-14 lg:w-56 flex-shrink-0">
+          <Link href="/" className="relative flex items-center h-[60px] w-64 lg:h-[76px] lg:w-80 flex-shrink-0">
             <Image
               src={LOGO_SRC}
               alt={LOGO_ALT}
               fill
-              sizes="(min-width: 1024px) 224px, 128px"
+              sizes="(min-width: 1024px) 320px, 256px"
               priority
               className="object-contain object-left"
             />
