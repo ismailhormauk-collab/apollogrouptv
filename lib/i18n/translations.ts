@@ -165,15 +165,53 @@ const en = {
     badge: 'Pricing',
     heading1: 'Simple, transparent',
     heading2: 'pricing',
-    subtitle: 'Choose the plan that fits you. Every plan includes full access to live TV, movies, series, and 24/7 support.',
+    subtitle: 'Choose your device count and plan duration. Every plan includes full access to live TV, movies, series, and 24/7 support.',
     popularLabel: 'Most Popular',
-    bestValueLabel: 'Best Value',
-    perMonthSuffix: '/ mo',
-    plans: [
-      { name: '1 Month', price: '€20', period: '1 month', perMonth: '€20.00 / mo' },
-      { name: '3 Months', price: '€35', period: '3 months', perMonth: '€11.67 / mo' },
-      { name: '6 Months', price: '€45', period: '6 months', perMonth: '€7.50 / mo' },
-      { name: '12 Months', price: '€65', period: '12 months', perMonth: '€5.42 / mo' },
+    deviceTiers: [
+      {
+        id: '1',
+        label: '1 Device',
+        descriptor: 'Base Plan',
+        plans: [
+          { name: '1 Month', price: '$23', period: '1 month', perMonth: '$23.00 / mo' },
+          { name: '3 Months', price: '$41', period: '3 months', perMonth: '$13.67 / mo' },
+          { name: '6 Months', price: '$52', period: '6 months', perMonth: '$8.67 / mo' },
+          { name: '12 Months', price: '$76', period: '12 months', perMonth: '$6.33 / mo' },
+        ],
+      },
+      {
+        id: '2',
+        label: '2 Devices',
+        descriptor: 'Save ~10%',
+        plans: [
+          { name: '1 Month', price: '$42', period: '1 month', perMonth: '$42.00 / mo' },
+          { name: '3 Months', price: '$73', period: '3 months', perMonth: '$24.33 / mo' },
+          { name: '6 Months', price: '$94', period: '6 months', perMonth: '$15.67 / mo' },
+          { name: '12 Months', price: '$138', period: '12 months', perMonth: '$11.50 / mo' },
+        ],
+      },
+      {
+        id: '3',
+        label: '3 Devices',
+        descriptor: 'Save ~15%',
+        plans: [
+          { name: '1 Month', price: '$59', period: '1 month', perMonth: '$59.00 / mo' },
+          { name: '3 Months', price: '$105', period: '3 months', perMonth: '$35.00 / mo' },
+          { name: '6 Months', price: '$134', period: '6 months', perMonth: '$22.33 / mo' },
+          { name: '12 Months', price: '$192', period: '12 months', perMonth: '$16.00 / mo' },
+        ],
+      },
+      {
+        id: '4',
+        label: '4 Devices',
+        descriptor: 'Save ~20%',
+        plans: [
+          { name: '1 Month', price: '$75', period: '1 month', perMonth: '$75.00 / mo' },
+          { name: '3 Months', price: '$131', period: '3 months', perMonth: '$43.67 / mo' },
+          { name: '6 Months', price: '$168', period: '6 months', perMonth: '$28.00 / mo' },
+          { name: '12 Months', price: '$243', period: '12 months', perMonth: '$20.25 / mo' },
+        ],
+      },
     ],
     features: [
       'Instant Activation!',
@@ -185,7 +223,7 @@ const en = {
       '24/7 Live Chat Support',
     ],
     ctaBtn: 'Choose Plan',
-    note: 'Prices shown in EUR. Activation is completed within minutes via WhatsApp after checkout.',
+    note: 'Prices shown in USD. Activation is completed within minutes via WhatsApp after checkout.',
   },
   privacy: {
     badge: 'Legal',
@@ -389,15 +427,53 @@ const fr: typeof en = {
     badge: 'Tarifs',
     heading1: 'Des tarifs simples',
     heading2: 'et transparents',
-    subtitle: "Choisissez le forfait qui vous convient. Chaque forfait inclut un accès complet à la TV en direct, aux films, aux séries et à une assistance 24/7.",
+    subtitle: "Choisissez votre nombre d'appareils et la durée du forfait. Chaque forfait inclut un accès complet à la TV en direct, aux films, aux séries et à une assistance 24/7.",
     popularLabel: 'Le plus populaire',
-    bestValueLabel: 'Meilleure offre',
-    perMonthSuffix: '/ mois',
-    plans: [
-      { name: '1 mois', price: '20 €', period: '1 mois', perMonth: '20,00 € / mois' },
-      { name: '3 mois', price: '35 €', period: '3 mois', perMonth: '11,67 € / mois' },
-      { name: '6 mois', price: '45 €', period: '6 mois', perMonth: '7,50 € / mois' },
-      { name: '12 mois', price: '65 €', period: '12 mois', perMonth: '5,42 € / mois' },
+    deviceTiers: [
+      {
+        id: '1',
+        label: '1 appareil',
+        descriptor: 'Forfait de base',
+        plans: [
+          { name: '1 mois', price: '23 $', period: '1 mois', perMonth: '23,00 $ / mois' },
+          { name: '3 mois', price: '41 $', period: '3 mois', perMonth: '13,67 $ / mois' },
+          { name: '6 mois', price: '52 $', period: '6 mois', perMonth: '8,67 $ / mois' },
+          { name: '12 mois', price: '76 $', period: '12 mois', perMonth: '6,33 $ / mois' },
+        ],
+      },
+      {
+        id: '2',
+        label: '2 appareils',
+        descriptor: 'Économisez ~10%',
+        plans: [
+          { name: '1 mois', price: '42 $', period: '1 mois', perMonth: '42,00 $ / mois' },
+          { name: '3 mois', price: '73 $', period: '3 mois', perMonth: '24,33 $ / mois' },
+          { name: '6 mois', price: '94 $', period: '6 mois', perMonth: '15,67 $ / mois' },
+          { name: '12 mois', price: '138 $', period: '12 mois', perMonth: '11,50 $ / mois' },
+        ],
+      },
+      {
+        id: '3',
+        label: '3 appareils',
+        descriptor: 'Économisez ~15%',
+        plans: [
+          { name: '1 mois', price: '59 $', period: '1 mois', perMonth: '59,00 $ / mois' },
+          { name: '3 mois', price: '105 $', period: '3 mois', perMonth: '35,00 $ / mois' },
+          { name: '6 mois', price: '134 $', period: '6 mois', perMonth: '22,33 $ / mois' },
+          { name: '12 mois', price: '192 $', period: '12 mois', perMonth: '16,00 $ / mois' },
+        ],
+      },
+      {
+        id: '4',
+        label: '4 appareils',
+        descriptor: 'Économisez ~20%',
+        plans: [
+          { name: '1 mois', price: '75 $', period: '1 mois', perMonth: '75,00 $ / mois' },
+          { name: '3 mois', price: '131 $', period: '3 mois', perMonth: '43,67 $ / mois' },
+          { name: '6 mois', price: '168 $', period: '6 mois', perMonth: '28,00 $ / mois' },
+          { name: '12 mois', price: '243 $', period: '12 mois', perMonth: '20,25 $ / mois' },
+        ],
+      },
     ],
     features: [
       'Activation instantanée !',
@@ -409,7 +485,7 @@ const fr: typeof en = {
       'Support en direct 24/7',
     ],
     ctaBtn: 'Choisir ce forfait',
-    note: "Prix affichés en EUR. L'activation est effectuée en quelques minutes via WhatsApp après la commande.",
+    note: "Prix affichés en USD. L'activation est effectuée en quelques minutes via WhatsApp après la commande.",
   },
   privacy: {
     badge: 'Légal',
@@ -613,15 +689,53 @@ const de: typeof en = {
     badge: 'Preise',
     heading1: 'Einfache, transparente',
     heading2: 'Preise',
-    subtitle: 'Wählen Sie den passenden Plan. Jeder Plan beinhaltet vollen Zugriff auf Live-TV, Filme, Serien und 24/7-Support.',
+    subtitle: 'Wählen Sie Ihre Geräteanzahl und die Laufzeit. Jeder Plan beinhaltet vollen Zugriff auf Live-TV, Filme, Serien und 24/7-Support.',
     popularLabel: 'Am beliebtesten',
-    bestValueLabel: 'Bestes Angebot',
-    perMonthSuffix: '/ Monat',
-    plans: [
-      { name: '1 Monat', price: '20 €', period: '1 Monat', perMonth: '20,00 € / Monat' },
-      { name: '3 Monate', price: '35 €', period: '3 Monate', perMonth: '11,67 € / Monat' },
-      { name: '6 Monate', price: '45 €', period: '6 Monate', perMonth: '7,50 € / Monat' },
-      { name: '12 Monate', price: '65 €', period: '12 Monate', perMonth: '5,42 € / Monat' },
+    deviceTiers: [
+      {
+        id: '1',
+        label: '1 Gerät',
+        descriptor: 'Basisplan',
+        plans: [
+          { name: '1 Monat', price: '23 $', period: '1 Monat', perMonth: '23,00 $ / Monat' },
+          { name: '3 Monate', price: '41 $', period: '3 Monate', perMonth: '13,67 $ / Monat' },
+          { name: '6 Monate', price: '52 $', period: '6 Monate', perMonth: '8,67 $ / Monat' },
+          { name: '12 Monate', price: '76 $', period: '12 Monate', perMonth: '6,33 $ / Monat' },
+        ],
+      },
+      {
+        id: '2',
+        label: '2 Geräte',
+        descriptor: 'Sparen Sie ~10%',
+        plans: [
+          { name: '1 Monat', price: '42 $', period: '1 Monat', perMonth: '42,00 $ / Monat' },
+          { name: '3 Monate', price: '73 $', period: '3 Monate', perMonth: '24,33 $ / Monat' },
+          { name: '6 Monate', price: '94 $', period: '6 Monate', perMonth: '15,67 $ / Monat' },
+          { name: '12 Monate', price: '138 $', period: '12 Monate', perMonth: '11,50 $ / Monat' },
+        ],
+      },
+      {
+        id: '3',
+        label: '3 Geräte',
+        descriptor: 'Sparen Sie ~15%',
+        plans: [
+          { name: '1 Monat', price: '59 $', period: '1 Monat', perMonth: '59,00 $ / Monat' },
+          { name: '3 Monate', price: '105 $', period: '3 Monate', perMonth: '35,00 $ / Monat' },
+          { name: '6 Monate', price: '134 $', period: '6 Monate', perMonth: '22,33 $ / Monat' },
+          { name: '12 Monate', price: '192 $', period: '12 Monate', perMonth: '16,00 $ / Monat' },
+        ],
+      },
+      {
+        id: '4',
+        label: '4 Geräte',
+        descriptor: 'Sparen Sie ~20%',
+        plans: [
+          { name: '1 Monat', price: '75 $', period: '1 Monat', perMonth: '75,00 $ / Monat' },
+          { name: '3 Monate', price: '131 $', period: '3 Monate', perMonth: '43,67 $ / Monat' },
+          { name: '6 Monate', price: '168 $', period: '6 Monate', perMonth: '28,00 $ / Monat' },
+          { name: '12 Monate', price: '243 $', period: '12 Monate', perMonth: '20,25 $ / Monat' },
+        ],
+      },
     ],
     features: [
       'Sofortige Aktivierung!',
@@ -633,7 +747,7 @@ const de: typeof en = {
       '24/7 Live-Chat-Support',
     ],
     ctaBtn: 'Plan wählen',
-    note: 'Preise in EUR. Die Aktivierung erfolgt innerhalb weniger Minuten per WhatsApp nach der Bestellung.',
+    note: 'Preise in USD. Die Aktivierung erfolgt innerhalb weniger Minuten per WhatsApp nach der Bestellung.',
   },
   privacy: {
     badge: 'Rechtliches',
@@ -837,15 +951,53 @@ const es: typeof en = {
     badge: 'Precios',
     heading1: 'Precios simples',
     heading2: 'y transparentes',
-    subtitle: 'Elige el plan que mejor se adapte a ti. Cada plan incluye acceso completo a TV en vivo, películas, series y soporte 24/7.',
+    subtitle: 'Elige tu número de dispositivos y la duración del plan. Cada plan incluye acceso completo a TV en vivo, películas, series y soporte 24/7.',
     popularLabel: 'Más popular',
-    bestValueLabel: 'Mejor oferta',
-    perMonthSuffix: '/ mes',
-    plans: [
-      { name: '1 mes', price: '20 €', period: '1 mes', perMonth: '20,00 € / mes' },
-      { name: '3 meses', price: '35 €', period: '3 meses', perMonth: '11,67 € / mes' },
-      { name: '6 meses', price: '45 €', period: '6 meses', perMonth: '7,50 € / mes' },
-      { name: '12 meses', price: '65 €', period: '12 meses', perMonth: '5,42 € / mes' },
+    deviceTiers: [
+      {
+        id: '1',
+        label: '1 dispositivo',
+        descriptor: 'Plan base',
+        plans: [
+          { name: '1 mes', price: '$23', period: '1 mes', perMonth: '$23.00 / mes' },
+          { name: '3 meses', price: '$41', period: '3 meses', perMonth: '$13.67 / mes' },
+          { name: '6 meses', price: '$52', period: '6 meses', perMonth: '$8.67 / mes' },
+          { name: '12 meses', price: '$76', period: '12 meses', perMonth: '$6.33 / mes' },
+        ],
+      },
+      {
+        id: '2',
+        label: '2 dispositivos',
+        descriptor: 'Ahorra ~10%',
+        plans: [
+          { name: '1 mes', price: '$42', period: '1 mes', perMonth: '$42.00 / mes' },
+          { name: '3 meses', price: '$73', period: '3 meses', perMonth: '$24.33 / mes' },
+          { name: '6 meses', price: '$94', period: '6 meses', perMonth: '$15.67 / mes' },
+          { name: '12 meses', price: '$138', period: '12 meses', perMonth: '$11.50 / mes' },
+        ],
+      },
+      {
+        id: '3',
+        label: '3 dispositivos',
+        descriptor: 'Ahorra ~15%',
+        plans: [
+          { name: '1 mes', price: '$59', period: '1 mes', perMonth: '$59.00 / mes' },
+          { name: '3 meses', price: '$105', period: '3 meses', perMonth: '$35.00 / mes' },
+          { name: '6 meses', price: '$134', period: '6 meses', perMonth: '$22.33 / mes' },
+          { name: '12 meses', price: '$192', period: '12 meses', perMonth: '$16.00 / mes' },
+        ],
+      },
+      {
+        id: '4',
+        label: '4 dispositivos',
+        descriptor: 'Ahorra ~20%',
+        plans: [
+          { name: '1 mes', price: '$75', period: '1 mes', perMonth: '$75.00 / mes' },
+          { name: '3 meses', price: '$131', period: '3 meses', perMonth: '$43.67 / mes' },
+          { name: '6 meses', price: '$168', period: '6 meses', perMonth: '$28.00 / mes' },
+          { name: '12 meses', price: '$243', period: '12 meses', perMonth: '$20.25 / mes' },
+        ],
+      },
     ],
     features: [
       '¡Activación instantánea!',
@@ -857,7 +1009,7 @@ const es: typeof en = {
       'Soporte por chat en vivo 24/7',
     ],
     ctaBtn: 'Elegir plan',
-    note: 'Precios en EUR. La activación se completa en minutos por WhatsApp tras el pedido.',
+    note: 'Precios en USD. La activación se completa en minutos por WhatsApp tras el pedido.',
   },
   privacy: {
     badge: 'Legal',
