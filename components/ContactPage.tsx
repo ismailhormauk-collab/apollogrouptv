@@ -1,17 +1,12 @@
 "use client";
-import { useState } from "react";
 import {
-  CircleAlert, CircleCheck, Zap,
-  Mail, Phone, Clock, Headphones, ShieldCheck,
+  Mail, Phone, Clock, Headphones, ShieldCheck, ArrowUpRight,
 } from "lucide-react";
 import PosterBackground from "@/components/PosterBackground";
 import { useLanguage } from "@/lib/i18n/context";
 import { getWhatsAppUrl, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 const EMAIL = "contact@apollogroutv.com";
-
-interface Fields { fullName: string; email: string; subject: string; message: string }
-interface Errors { fullName?: string; email?: string; subject?: string; message?: string }
 
 const WA_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 flex-shrink-0">
@@ -22,73 +17,7 @@ const WA_ICON = (
 export default function ContactPage() {
   const { t } = useLanguage();
   const c = t.contact;
-  const fe = c.form;
-  const err = c.errors;
-
-  const [fields, setFields] = useState<Fields>({ fullName: "", email: "", subject: "", message: "" });
-  const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
-  const [errors,  setErrors]  = useState<Errors>({});
-  const [submitted, setSubmitted] = useState(false);
-
-  const validate = (f: Fields): Errors => {
-    const e: Errors = {};
-    if (!f.fullName.trim())  e.fullName = err.fullName;
-    if (!f.email.trim())     e.email    = err.email;
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = err.emailInvalid;
-    if (!f.subject.trim())   e.subject  = err.subject;
-    if (!f.message.trim())   e.message  = err.message;
-    else if (f.message.trim().length < 10) e.message = err.messageMin;
-    return e;
-  };
-
-  const set = (key: keyof Fields) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const val = e.target.value;
-    setFields((p) => ({ ...p, [key]: val }));
-    if (touched[key]) setErrors(validate({ ...fields, [key]: val }));
-  };
-
-  const blur = (key: keyof Fields) => () => {
-    setTouched((p) => ({ ...p, [key]: true }));
-    setErrors(validate(fields));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const allTouched = Object.fromEntries(
-      (Object.keys(fields) as (keyof Fields)[]).map((k) => [k, true])
-    ) as Record<keyof Fields, boolean>;
-    setTouched(allTouched);
-    const errs = validate(fields);
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-
-    const msg = [
-      "💬 *New Support Message — Apollo Group TV*",
-      "",
-      `👤 *Name:* ${fields.fullName.trim()}`,
-      `📧 *Email:* ${fields.email.trim()}`,
-      `📌 *Subject:* ${fields.subject.trim()}`,
-      "",
-      `📝 *Message:*`,
-      fields.message.trim(),
-    ].join("\n");
-
-    window.open(
-      getWhatsAppUrl(msg),
-      "_blank",
-      "noopener,noreferrer"
-    );
-    setSubmitted(true);
-  };
-
-  const inputCls = (touched2: boolean, error?: string) => {
-    const base = "w-full bg-white/[0.04] border rounded-xl px-4 py-3.5 text-white placeholder-gray-600 text-sm outline-none transition-all duration-200 resize-none";
-    if (touched2 && error)   return `${base} border-red-500/50 focus:border-red-500/70`;
-    if (touched2 && !error)  return `${base} border-[#2563EB]/40 focus:border-[#2563EB]/60`;
-    return `${base} border-white/[0.07] focus:border-white/25 focus:bg-white/[0.06]`;
-  };
+  const d = c.direct;
 
   return (
     <div className="relative min-h-screen bg-[#0a0a0a]">
@@ -198,145 +127,60 @@ export default function ContactPage() {
               </div>
             </aside>
 
-            {/* ── Right: form ── */}
+            {/* ── Right: direct contact ── */}
             <div className="lg:col-span-3">
               <div className="bg-[#0f0f0f]/80 backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-[0_32px_80px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[3px] bg-gradient-to-r from-transparent via-[#2563EB] to-transparent" />
                 <div className="p-6 sm:p-8 md:p-10">
                   <div className="mb-6 sm:mb-8">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{fe.title}</h3>
-                    <p className="text-gray-500 text-sm">{fe.subtitle}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{d.title}</h3>
+                    <p className="text-gray-500 text-sm">{d.subtitle}</p>
                   </div>
 
-                  <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-
-                    {/* Row 1: Full Name + Email */}
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.15em]">
-                          {fe.fullName} <span className="text-[#2563EB]">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={fields.fullName}
-                          onChange={set("fullName")}
-                          onBlur={blur("fullName")}
-                          placeholder={fe.fullNamePh}
-                          autoComplete="name"
-                          spellCheck={false}
-                          className={inputCls(!!touched.fullName, errors.fullName)}
-                        />
-                        {touched.fullName && errors.fullName && (
-                          <p className="text-red-400/80 text-[11px] flex items-center gap-1.5">
-                            <CircleAlert size={11} />{errors.fullName}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.15em]">
-                          {fe.email} <span className="text-[#2563EB]">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          value={fields.email}
-                          onChange={set("email")}
-                          onBlur={blur("email")}
-                          placeholder={fe.emailPh}
-                          autoComplete="email"
-                          className={inputCls(!!touched.email, errors.email)}
-                        />
-                        {touched.email && errors.email && (
-                          <p className="text-red-400/80 text-[11px] flex items-center gap-1.5">
-                            <CircleAlert size={11} />{errors.email}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Subject */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.15em]">
-                        {fe.subject} <span className="text-[#2563EB]">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={fields.subject}
-                        onChange={set("subject")}
-                        onBlur={blur("subject")}
-                        placeholder={fe.subjectPh}
-                        spellCheck={false}
-                        className={inputCls(!!touched.subject, errors.subject)}
-                      />
-                      {touched.subject && errors.subject && (
-                        <p className="text-red-400/80 text-[11px] flex items-center gap-1.5">
-                          <CircleAlert size={11} />{errors.subject}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Message */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.15em]">
-                        {fe.message} <span className="text-[#2563EB]">*</span>
-                      </label>
-                      <textarea
-                        rows={5}
-                        value={fields.message}
-                        onChange={set("message")}
-                        onBlur={blur("message")}
-                        placeholder={fe.messagePh}
-                        className={`${inputCls(!!touched.message, errors.message)} leading-relaxed`}
-                      />
-                      <div className="flex items-center justify-between">
-                        {touched.message && errors.message ? (
-                          <p className="text-red-400/80 text-[11px] flex items-center gap-1.5">
-                            <CircleAlert size={11} />{errors.message}
-                          </p>
-                        ) : (
-                          <span />
-                        )}
-                        <span className={`text-[11px] ml-auto ${fields.message.length > 500 ? "text-red-400/70" : "text-gray-600"}`}>
-                          {fields.message.length} / 500
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Success banner */}
-                    {submitted && (
-                      <div className="flex items-start gap-3 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-4 py-4">
-                        <CircleCheck size={17} className="text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-emerald-400 font-semibold text-sm">{fe.successTitle}</p>
-                          <p className="text-emerald-400/70 text-xs mt-1 leading-relaxed">{fe.successBody}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      disabled={submitted}
-                      className={`w-full py-4 rounded-xl font-black uppercase tracking-[0.15em] text-sm flex items-center justify-center gap-2.5 transition-all duration-300 mt-1 ${
-                        submitted
-                          ? "bg-[#1a1a1a] border border-white/[0.06] text-gray-600 cursor-not-allowed"
-                          : "bg-[#2563EB] hover:bg-[#1D4ED8] text-white shadow-[0_4px_32px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_48px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:translate-y-0"
-                      }`}
+                  <div className="flex flex-col gap-4 sm:gap-5">
+                    {/* WhatsApp */}
+                    <a
+                      href={getWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex items-center gap-4 sm:gap-5 bg-white/[0.03] border border-white/[0.08] hover:border-[#2563EB]/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:bg-[#2563EB]/[0.05] hover:shadow-[0_4px_32px_rgba(37,99,235,0.15)] hover:-translate-y-0.5"
                     >
-                      {submitted ? (
-                        <><CircleCheck size={16} />{fe.submittedBtn}</>
-                      ) : (
-                        <><Zap size={15} />{fe.submit}</>
-                      )}
-                    </button>
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#2563EB]/10 border border-[#2563EB]/25 rounded-xl flex items-center justify-center flex-shrink-0 text-[#2563EB] group-hover:bg-[#2563EB]/20 transition-colors duration-300 [&>svg]:w-6 [&>svg]:h-6">
+                        {WA_ICON}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">{c.whatsappLabel}</p>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#2563EB] bg-[#2563EB]/10 border border-[#2563EB]/20 rounded-full px-2 py-0.5">
+                            {d.fastest}
+                          </span>
+                        </div>
+                        <p className="text-white text-lg sm:text-2xl font-bold tracking-tight group-hover:text-[#2563EB] transition-colors duration-200">
+                          {WHATSAPP_DISPLAY}
+                        </p>
+                        <p className="text-gray-600 text-xs mt-1">{c.tapToOpenWA}</p>
+                      </div>
+                      <ArrowUpRight size={20} className="hidden sm:block text-gray-600 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0" />
+                    </a>
 
-                    <p className="text-center text-xs text-gray-600 leading-relaxed">
-                      {fe.footerNote}{" "}
-                      <a href={`mailto:${EMAIL}`} className="text-[#2563EB]/70 hover:text-[#2563EB] underline underline-offset-2 transition-colors">
-                        {EMAIL}
-                      </a>
-                    </p>
-                  </form>
+                    {/* Email */}
+                    <a
+                      href={`mailto:${EMAIL}`}
+                      className="group relative flex items-center gap-4 sm:gap-5 bg-white/[0.03] border border-white/[0.08] hover:border-[#2563EB]/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:bg-[#2563EB]/[0.05] hover:shadow-[0_4px_32px_rgba(37,99,235,0.15)] hover:-translate-y-0.5"
+                    >
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#2563EB]/10 border border-[#2563EB]/25 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#2563EB]/20 transition-colors duration-300">
+                        <Mail size={22} className="text-[#2563EB]" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-gray-500 text-xs uppercase tracking-widest font-bold mb-1">{c.emailLabel}</p>
+                        <p className="text-white text-base sm:text-xl font-bold tracking-tight group-hover:text-[#2563EB] transition-colors duration-200 break-all">
+                          {EMAIL}
+                        </p>
+                        <p className="text-gray-600 text-xs mt-1">{d.tapToEmail}</p>
+                      </div>
+                      <ArrowUpRight size={20} className="hidden sm:block text-gray-600 group-hover:text-[#2563EB] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0" />
+                    </a>
+                  </div>
                 </div>
                 <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
               </div>
