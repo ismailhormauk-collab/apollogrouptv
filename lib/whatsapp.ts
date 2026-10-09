@@ -1,8 +1,8 @@
 // Single source of truth for the WhatsApp number used across the site.
 // Update WHATSAPP_NUMBER here to change every WhatsApp link at once.
-export const WHATSAPP_NUMBER = "447456061424";
+export const WHATSAPP_NUMBER = "34613836698";
 // Human-readable form for on-page display (e.g. contact cards).
-export const WHATSAPP_DISPLAY = "+44 7456 061424";
+export const WHATSAPP_DISPLAY = "+34 613 836 698";
 
 /**
  * Builds a wa.me link. Pass a message to pre-fill the chat, or omit it
